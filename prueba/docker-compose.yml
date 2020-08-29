@@ -1,0 +1,19 @@
+version: '3'
+services:
+  creativeplanet:
+    build: .
+    depends_on:
+      - mysql
+    ports:
+      - "80:80"
+    container_name: mainpage
+    image: mainpage
+    env_file:
+      - ./vars.env
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+    ports:
+      - "3306:3306"
